@@ -1,0 +1,14 @@
+.target {
+  width:10%; 
+  height:5%; 
+  background-color: red; 
+  margin-left: 5%;
+}
+
+.battery {
+  width:4%;
+  height:5%;
+  background-color: red;
+  margin-left: 48%;
+  margin-top: 45%;
+}
