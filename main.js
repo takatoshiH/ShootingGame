@@ -7,11 +7,13 @@ function createTarget() {
   field.appendChild(target);
   target.id = "target";
   target.style.marginLeft = "0px";
-  target.style.marginTop = "10px";
+  target.style.marginTop = String(Math.random() * 250 + 10) + "px";
   console.log("できた?");
 }
 
 target = document.getElementById("target");
+console.log(target.parentNode);
+
 interval_id = setInterval(() => {
   var new_margin = parseInt(target.style.marginLeft.split("px")[0]) + parseInt(window.getComputedStyle(field).width) / 1000;
   if (new_margin >= window.parent.screen.width) {
