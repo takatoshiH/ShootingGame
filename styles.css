@@ -19,6 +19,7 @@ div.bullet {
 }
 
 div.target {
+  position: absolute;
   width:5%; 
   height:2%; 
   background-color: red;
