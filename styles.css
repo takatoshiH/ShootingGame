@@ -16,11 +16,21 @@ div.bullet {
   width: 10px;
   height: 10px;
   background-color: red;
+  border-radius: 50%;
 }
 
 div.target {
   position: absolute;
-  width:5%; 
+  width:3%; 
   height:2%; 
   background-color: red;
+}
+
+div.battery {
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  height: 5%;
+  width: 5%;
+  background-color: blue;
 }

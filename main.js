@@ -13,6 +13,7 @@ class Target {
       var new_margin = parseInt(window.getComputedStyle(field).width) / this.speed + this.left;
       if (new_margin > window.parent.screen.width * 1.1) {
         clearInterval(this.interval_id);
+        this.target.style.display = "none";
       } else {
         this.left = new_margin;
         this.target.style.left = String(this.left) + "px";
@@ -30,21 +31,37 @@ class bullet {
     this.bullet = document.getElementById("field").appendChild(document.createElement('div'));
     this.bullet.classList.add('bullet');
     this.left = parseInt(window.getComputedStyle(field).width)/2;
-    this.top = parseInt(window.getComputedStyle(field).height) * 0.95;
+    this.top = parseInt(window.getComputedStyle(field).height);
     this.bullet.style.left = String(this.left) + "px";
     this.bullet.style.top = String(this.top) + "px";
 
     this.interval_id = setInterval(() => {
-      this.top -= 1;
-      this.bullet.style.top = String(this.top) + "px";
+      if (this.top >= -10) {
+        this.top -= 1;
+        this.bullet.style.top = String(this.top) + "px";
+      } else {
+        clearInterval(this.interval_id);
+      }
+      
     }, 10);
   }
 }
 
-target = new Target();
-target = new Target();
-target = new Target();
-target = new Target();
-bullet = new bullet();
+setInterval(() => {
+  new Target();
+}, 1000);
 
+document.addEventListener('keydown', (event) => {
+  var keyName = event.key;
+  if (keyName == "h" || keyName == "g") {
+    new bullet();
+  } else if(keyName == "f") {
+    
+  } else {
 
+  }
+});
+
+setInterval(() => {
+  window.location.href = 'end.html';
+}, 10000);
