@@ -2,7 +2,7 @@ class Target {
 
   constructor() {
     this.marginLeft = 0;
-    this.marginTop = Math.random() * 10;
+    this.marginTop = Math.random() * 100;
     this.speed = Math.random() * 2000;
     this.target = document.getElementById("field").appendChild(document.createElement('div'));
     this.target.classList.add('target');
@@ -21,16 +21,31 @@ class Target {
   }
 
   hidden() {
-    this.target.style.display = "none"; 
+    this.target.style.display = "none";
+  }
+}
+
+class bullet {
+  constructor() {
+    this.bullet = document.getElementById("field").appendChild(document.createElement('div'));
+    this.bullet.classList.add('bullet');
+    this.marginLeft = window.getComputedStyle(field).width;
+    this.marginButtom = 0;
+    // this.bullet.style.left = String(this.marginLeft) + "px";
+    // this.bullet.style.top = String(this.marginButtom) + "px";
   }
 }
 
 target = new Target();
-cnt = 0;
-id = setInterval(() => {
-  cnt++;
-  if (cnt == 10) {
-    clearInterval(id);
-    target.hidden();
-  }
-}, 100);
+bullet = new bullet();
+
+// cnt = 0;
+// id = setInterval(() => {
+//   cnt++;
+//   if (cnt == 50) {
+//     clearInterval(id);
+//     target.hidden();
+//   }
+// }, 100);
+
+
