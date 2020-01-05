@@ -2,7 +2,7 @@ class Target {
 
   constructor() {
     this.left = 0;
-    this.top = Math.random() * 100;
+    this.top = Math.random() * 300;
     this.speed = Math.random() * 2000;
     this.target = document.getElementById("field").appendChild(document.createElement('div'));
     this.target.classList.add('target');
@@ -46,14 +46,5 @@ target = new Target();
 target = new Target();
 target = new Target();
 bullet = new bullet();
-
-// cnt = 0;
-// id = setInterval(() => {
-//   cnt++;
-//   if (cnt == 50) {
-//     clearInterval(id);
-//     target.hidden();
-//   }
-// }, 100);
 
 
