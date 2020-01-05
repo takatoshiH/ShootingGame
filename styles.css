@@ -13,8 +13,6 @@ body {
 
 div.bullet {
   position: absolute;
-  top: 90%;
-  left: 50%;
   width: 10px;
   height: 10px;
   background-color: red;

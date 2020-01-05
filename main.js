@@ -29,10 +29,10 @@ class bullet {
   constructor() {
     this.bullet = document.getElementById("field").appendChild(document.createElement('div'));
     this.bullet.classList.add('bullet');
-    this.marginLeft = window.getComputedStyle(field).width;
-    this.marginButtom = 0;
-    // this.bullet.style.left = String(this.marginLeft) + "px";
-    // this.bullet.style.top = String(this.marginButtom) + "px";
+    this.left = parseInt(window.getComputedStyle(field).width)/2;
+    this.top = parseInt(window.getComputedStyle(field).height) * 0.95;
+    this.bullet.style.left = String(this.left) + "px";
+    this.bullet.style.top = String(this.top) + "px";
   }
 }
 
