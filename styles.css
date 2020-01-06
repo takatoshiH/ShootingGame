@@ -6,7 +6,7 @@ body {
 #field {
   width:100%;
   height:500px;
-  background-color: gray;
+  background-color: skyblue;
   margin:0px;
   overflow: hidden;
 }
@@ -23,7 +23,7 @@ div.target {
   position: absolute;
   width:3%; 
   height:2%; 
-  background-color: red;
+  background-color: dodgerblue;
 }
 
 div.battery {

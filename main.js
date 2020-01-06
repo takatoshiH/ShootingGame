@@ -1,5 +1,4 @@
 class Target {
-
   constructor() {
     this.left = 0;
     this.top = Math.random() * 300;
@@ -45,23 +44,38 @@ class bullet {
       
     }, 10);
   }
+
+  hidden() {
+    this.bullet.style.display = "none";
+  }
 }
 
+targets = [];
+bullets = [];
+
 setInterval(() => {
-  new Target();
-}, 1000);
+  targets.push(new Target());
+}, 2000);
+
+setInterval(() => {
+  targets.forEach((target) => {
+    var window_width = parseInt(window.getComputedStyle(field).width);
+    var window_height = parseInt(window.getComputedStyle(field).height);
+    bullets.forEach((bullet) => {
+      if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && target.top + window_height * 0.02  <= bullet.top && target.top + window_height * 0.02 >= bullet.top) {
+        target.hidden();
+      }
+    })
+  });
+}, 10);
 
 document.addEventListener('keydown', (event) => {
   var keyName = event.key;
   if (keyName == "h" || keyName == "g") {
-    new bullet();
+    bullets.push(new bullet());
   } else if(keyName == "f") {
-    
+
   } else {
 
   }
 });
-
-setInterval(() => {
-  window.location.href = 'end.html';
-}, 10000);
