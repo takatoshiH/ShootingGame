@@ -40,6 +40,7 @@ class bullet {
         this.bullet.style.top = String(this.top) + "px";
       } else {
         clearInterval(this.interval_id);
+        this.bullet.style.display = "none";
       }
       
     }, 10);
@@ -62,6 +63,7 @@ setInterval(() => {
     var window_width = parseInt(window.getComputedStyle(field).width);
     var window_height = parseInt(window.getComputedStyle(field).height);
     bullets.forEach((bullet) => {
+      console.log(bullet.top);
       if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && target.top + window_height * 0.02  <= bullet.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
       }
