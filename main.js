@@ -37,7 +37,7 @@ class bullet {
 
     this.interval_id = setInterval(() => {
       if (this.top >= -10) {
-        this.top -= 1;
+        this.top -= 4;
         this.bullet.style.top = String(this.top) + "px";
       } else {
         clearInterval(this.interval_id);
@@ -54,6 +54,7 @@ class bullet {
 
 targets = [];
 bullets = [];
+var hit_count = 0;
 
 setInterval(() => {
   targets.push(new Target());
@@ -74,10 +75,13 @@ setInterval(() => {
       }
       if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
+        bullet.hidden();
+        hit_count++;
+        document.getElementById("hitsCount").innerText = String(hit_count) + "Hits!";
       }
     })
   });
-}, 10);
+}, 1);
 
 document.addEventListener('keydown', (event) => {
   var keyName = event.key;
@@ -89,7 +93,3 @@ document.addEventListener('keydown', (event) => {
 
   }
 });
-
-// setInterval(() => {
-//   window.location.href = "end.html";
-// }, 30000)
