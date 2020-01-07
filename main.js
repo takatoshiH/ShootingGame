@@ -83,22 +83,20 @@ setInterval(() => {
 }, 1);
 
 var bullet_counter = 30;
-
 document.addEventListener('keydown', (event) => {
   var keyName = event.key;
   if (keyName == "h"　&& bullet_counter > 0) {
     bullets.push(new bullet());
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "bullets";
-  } else if(keyName == "f") {
-
-  } else {
-
   }
 });
 
-counter = 0;
+timer = 30;
 setInterval(() => {
-  counter++;
-  document.getElementById("timer").innerText = String(counter) + "秒";
+  timer--;
+  if (timer == 0) {
+    window.location.href = `end.html?counter=${hit_count}`;
+  }
+  document.getElementById("timer").innerText = String(timer) + "秒";
 }, 1000)
