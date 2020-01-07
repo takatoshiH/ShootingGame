@@ -55,19 +55,23 @@ class bullet {
 targets = [];
 bullets = [];
 
-targets.push(new Target());
-targets.push(new Target());
-targets.push(new Target());
-targets.push(new Target());
-
+setInterval(() => {
+  targets.push(new Target());
+}, 2000);
 
 setInterval(() => {
   targets.forEach((target) => {
-    console.log(target.left);
+    if (target.left > window.parent.screen.width) {
+      var index = targets.indexOf(target);
+      targets.splice(index, 1);
+    }
     var window_width = parseInt(window.getComputedStyle(field).width);
     var window_height = parseInt(window.getComputedStyle(field).height);
     bullets.forEach((bullet) => {
-      console.log(bullet.top);
+      if (bullet.top < -10) {
+        var index = bullets.indexOf(bullet);
+        bullets.splice(index, 1);
+      }
       if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && target.top + window_height * 0.02  <= bullet.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
         delete bullet;
@@ -87,3 +91,7 @@ document.addEventListener('keydown', (event) => {
 
   }
 });
+
+// setInterval(() => {
+//   window.location.href = "end.html";
+// }, 30000)
