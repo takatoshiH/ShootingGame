@@ -13,6 +13,7 @@ class Target {
       if (new_margin > window.parent.screen.width * 1.1) {
         clearInterval(this.interval_id);
         this.target.style.display = "none";
+        delete this;
       } else {
         this.left = new_margin;
         this.target.style.left = String(this.left) + "px";
@@ -40,7 +41,7 @@ class bullet {
         this.bullet.style.top = String(this.top) + "px";
       } else {
         clearInterval(this.interval_id);
-        this.bullet.style.display = "none";
+        delete this;
       }
       
     }, 10);
@@ -54,18 +55,23 @@ class bullet {
 targets = [];
 bullets = [];
 
-setInterval(() => {
-  targets.push(new Target());
-}, 2000);
+targets.push(new Target());
+targets.push(new Target());
+targets.push(new Target());
+targets.push(new Target());
+
 
 setInterval(() => {
   targets.forEach((target) => {
+    console.log(target.left);
     var window_width = parseInt(window.getComputedStyle(field).width);
     var window_height = parseInt(window.getComputedStyle(field).height);
     bullets.forEach((bullet) => {
       console.log(bullet.top);
       if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && target.top + window_height * 0.02  <= bullet.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
+        delete bullet;
+        delete target;
       }
     })
   });
