@@ -80,7 +80,7 @@ setInterval(() => {
       }
     })
   });
-}, 1);
+}, 10);
 
 var bullet_counter = 30;
 document.addEventListener('keydown', (event) => {
