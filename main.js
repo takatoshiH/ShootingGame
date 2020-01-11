@@ -91,7 +91,7 @@ document.addEventListener('keydown', (event) => {
   if (bullet_counter == 0) {
     setInterval(() => {
       window.location.href = "end.html";
-    }, 1000);
+    }, 3000);
   }
 });
 
