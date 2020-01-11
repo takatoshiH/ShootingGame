@@ -13,7 +13,6 @@ class Target {
       if (new_margin > window.parent.screen.width * 1.1) {
         clearInterval(this.interval_id);
         this.target.style.display = "none";
-        delete this;
       } else {
         this.left = new_margin;
         this.target.style.left = String(this.left) + "px";
@@ -41,9 +40,7 @@ class bullet {
         this.bullet.style.top = String(this.top) + "px";
       } else {
         clearInterval(this.interval_id);
-        delete this;
       }
-      
     }, 10);
   }
 
@@ -54,7 +51,6 @@ class bullet {
 
 targets = [];
 bullets = [];
-var over_targets = [];
 var timer = 30;
 var bullet_counter = 30;
 var target_interval = 1000;
@@ -78,13 +74,10 @@ setInterval(() => {
       }
       if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
-        console.log("hit");
-        over_targets.push(targets.indexOf(target));
       }
     })
   });
 }, 10);
-
 
 document.addEventListener('keydown', (event) => {
   var keyName = event.key;
@@ -98,10 +91,7 @@ document.addEventListener('keydown', (event) => {
 setInterval(() => {
   timer--;
   if (timer == 0) {
-    var hit_count = 30 - over_targets.length;
-    console.log(hit_count);
-    console.log(over_targets);
-    window.location.href = `end.html?${hit_count}`;
+    window.location.href = `end.html`;
   }
   document.getElementById("timer").innerText = String(timer) + "秒";
 }, 1000)
