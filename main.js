@@ -54,6 +54,7 @@ bullets = [];
 var timer = 30;
 var bullet_counter = 30;
 var target_interval = 1000;
+var flame_rate = 10;
 
 setInterval(() => {
   targets.push(new Target());
@@ -77,14 +78,14 @@ setInterval(() => {
       }
     })
   });
-}, 10);
+}, flame_rate);
 
 document.addEventListener('keydown', (event) => {
   var keyName = event.key;
   if (keyName == "h"　&& bullet_counter > 0) {
     bullets.push(new bullet());
     bullet_counter--;
-    document.getElementById("bullet_counter").innerText = String(bullet_counter) + "bullets";
+    document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
   }
   
   if (bullet_counter == 0) {
@@ -100,4 +101,4 @@ setInterval(() => {
     window.location.href = "end.html";
   }
   document.getElementById("timer").innerText = String(timer) + "秒";
-}, 1000)
+}, 1000);
