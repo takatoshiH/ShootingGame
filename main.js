@@ -2,7 +2,7 @@ class Target {
   constructor() {
     this.left = 0;
     this.top = Math.random() * 300;
-    this.speed = Math.random() * 2000;
+    this.speed = Math.random() * 1000;
     this.target = document.getElementById("field").appendChild(document.createElement('div'));
     this.target.classList.add('target');
     this.target.style.left = String(this.left) + "px";
@@ -37,7 +37,7 @@ class bullet {
 
     this.interval_id = setInterval(() => {
       if (this.top >= -10) {
-        this.top -= 4;
+        this.top -= 10;
         this.bullet.style.top = String(this.top) + "px";
       } else {
         clearInterval(this.interval_id);
@@ -54,11 +54,14 @@ class bullet {
 
 targets = [];
 bullets = [];
-var hit_count = 0;
+var over_targets = [];
+var timer = 30;
+var bullet_counter = 30;
+var target_interval = 1000;
 
 setInterval(() => {
   targets.push(new Target());
-}, 2000);
+}, target_interval);
 
 setInterval(() => {
   targets.forEach((target) => {
@@ -75,14 +78,14 @@ setInterval(() => {
       }
       if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
-        hit_count++;
-        document.getElementById("hitsCount").innerText = String(hit_count) + "Hits!";
+        console.log("hit");
+        over_targets.push(targets.indexOf(target));
       }
     })
   });
 }, 10);
 
-var bullet_counter = 30;
+
 document.addEventListener('keydown', (event) => {
   var keyName = event.key;
   if (keyName == "h"　&& bullet_counter > 0) {
@@ -92,11 +95,13 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-timer = 30;
 setInterval(() => {
   timer--;
   if (timer == 0) {
-    window.location.href = `end.html?counter=${hit_count}`;
+    var hit_count = 30 - over_targets.length;
+    console.log(hit_count);
+    console.log(over_targets);
+    window.location.href = `end.html?${hit_count}`;
   }
   document.getElementById("timer").innerText = String(timer) + "秒";
 }, 1000)
