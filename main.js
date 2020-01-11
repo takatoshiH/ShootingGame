@@ -86,6 +86,12 @@ document.addEventListener('keydown', (event) => {
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "bullets";
   }
+  
+  if (bullet_counter == 0) {
+    setInterval(() => {
+      window.location.href = "end.html";
+    }, 1000);
+  }
 });
 
 setInterval(() => {
