@@ -91,7 +91,7 @@ document.addEventListener('keydown', (event) => {
 setInterval(() => {
   timer--;
   if (timer == 0) {
-    window.location.href = `end.html`;
+    window.location.href = "end.html";
   }
   document.getElementById("timer").innerText = String(timer) + "秒";
 }, 1000)
