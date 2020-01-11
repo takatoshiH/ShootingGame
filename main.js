@@ -63,15 +63,13 @@ setInterval(() => {
 setInterval(() => {
   targets.forEach((target) => {
     if (target.left > window.parent.screen.width) {
-      var index = targets.indexOf(target);
-      targets.splice(index, 1);
+      targets.splice(targets.indexOf(target), 1);
     }
     var window_width = parseInt(window.getComputedStyle(field).width);
     var window_height = parseInt(window.getComputedStyle(field).height);
     bullets.forEach((bullet) => {
       if (bullet.top < -10) {
-        var index = bullets.indexOf(bullet);
-        bullets.splice(index, 1);
+        bullets.splice(bullets.indexOf(bullet), 1);
       }
       if (target.left >= window_width * 0.47 && target.left <= window_width * 0.53 && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
@@ -81,8 +79,7 @@ setInterval(() => {
 }, flame_rate);
 
 document.addEventListener('keydown', (event) => {
-  var keyName = event.key;
-  if (keyName == "h"　&& bullet_counter > 0) {
+  if (event.key == "h"　&& bullet_counter > 0) {
     bullets.push(new bullet());
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
