@@ -27,3 +27,10 @@ div.target {
   background-color: dodgerblue;
   border-radius: 50% 50% 50% 50%;
 }
+
+div.battery {
+  position: absolute;
+  width: 2%;
+  height: 5%;
+  background-color: grey;
+}

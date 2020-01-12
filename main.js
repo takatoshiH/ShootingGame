@@ -30,7 +30,7 @@ class bullet {
     this.bullet = document.getElementById("field").appendChild(document.createElement('div'));
     this.bullet.classList.add('bullet');
     this.left = position;
-    this.top = parseInt(window.getComputedStyle(field).height);
+    this.top = parseInt(window.getComputedStyle(field).height) * 0.85;
     this.bullet.style.left = String(this.left) + "px";
     this.bullet.style.top = String(this.top) + "px";
 
@@ -49,7 +49,25 @@ class bullet {
   }
 }
 
+class battery {
+  constructor() {
+    this.battery = document.getElementById("field").appendChild(document.createElement('div'));
+    this.battery.classList.add('battery');
+    this.left = parseInt(window.getComputedStyle(field).width) * 0.49;
+    this.top = parseInt(window.getComputedStyle(field).height) * 0.9;
+    this.battery.style.left = String(this.left) + "px";
+    this.battery.style.top = String(this.top) + "px";
+  }
+}
+
+targets = [];
+bullets = [];
+var timer = 30;
+var bullet_counter = 30;
+var target_interval = 1000;
+var flame_rate = 10;
 var position = parseInt(window.getComputedStyle(field).width) / 2;
+battery = new battery();
 
 document.addEventListener('keydown', (event) => {
   if (event.key == "f" && position >= 100) {
@@ -60,18 +78,10 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-targets = [];
-bullets = [];
-var timer = 30;
-var bullet_counter = 30;
-var target_interval = 1000;
-var flame_rate = 10;
 
-// setInterval(() => {
-//   targets.push(new Target());
-// }, target_interval);
-
-new Target();
+setInterval(() => {
+  targets.push(new Target());
+}, target_interval);
 
 setInterval(() => {
   targets.forEach((target) => {
@@ -85,11 +95,6 @@ setInterval(() => {
         bullets.splice(bullets.indexOf(bullet), 1);
       }
       
-      console.log(target.left + window_width ** 0.03);
-      console.log(bullet.left);
-      console.log(target.left);
-      
-      // 問題あり
       if (target.left + window_width * 0.03 >= bullet.left && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
       }
@@ -102,8 +107,23 @@ document.addEventListener('keydown', (event) => {
     bullets.push(new bullet(position));
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
+    console.log("ok");
   }
-  
+
+  if (event.key == "f" && position - 100 >= 0) {
+    position -= 50;
+    battery.left -= 50;
+    battery.battery.style.left = String(battery.left) + "px";
+  }
+
+  //砲台の移動処理の追加(問題あり)
+  if (event.key == "j" && position + 100 <= window.getComputedStyle(field).width) {
+    position += 50;
+    battery.left += 50;
+    battery.battery.style.left = String(battery.left) + "px";
+  }
+
+
   if (bullet_counter == 0) {
     setInterval(() => {
       window.location.href = "end.html";
@@ -111,10 +131,10 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-setInterval(() => {
-  timer--;
-  if (timer == 0) {
-    window.location.href = "end.html";
-  }
-  document.getElementById("timer").innerText = String(timer) + "秒";
-}, 1000);
+// setInterval(() => {
+//   timer--;
+//   if (timer == 0) {
+//     window.location.href = "end.html";
+//   }
+//   document.getElementById("timer").innerText = String(timer) + "秒";
+// }, 1000);
