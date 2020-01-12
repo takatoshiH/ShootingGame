@@ -78,10 +78,9 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-
-setInterval(() => {
-  targets.push(new Target());
-}, target_interval);
+// setInterval(() => {
+//   targets.push(new Target());
+// }, target_interval);
 
 setInterval(() => {
   targets.forEach((target) => {
@@ -107,19 +106,18 @@ document.addEventListener('keydown', (event) => {
     bullets.push(new bullet(position));
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
-    console.log("ok");
   }
 
   if (event.key == "f" && position - 100 >= 0) {
     position -= 50;
-    battery.left -= 50;
+    battery.left -= 150;
     battery.battery.style.left = String(battery.left) + "px";
   }
 
-  //砲台の移動処理の追加(問題あり)
+  //砲台の移動処理に問題あり
   if (event.key == "j" && position + 100 <= window.getComputedStyle(field).width) {
     position += 50;
-    battery.left += 50;
+    battery.left += 100;
     battery.battery.style.left = String(battery.left) + "px";
   }
 
