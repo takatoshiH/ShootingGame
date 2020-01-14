@@ -67,7 +67,6 @@ var bullet_counter = 30;
 var target_interval = 1000;
 var flame_rate = 10;
 var position = parseInt(window.getComputedStyle(field).width) / 2;
-battery = new battery();
 
 document.addEventListener('keydown', (event) => {
   if (event.key == "f" && position >= 100) {
@@ -78,9 +77,9 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// setInterval(() => {
-//   targets.push(new Target());
-// }, target_interval);
+setInterval(() => {
+  targets.push(new Target());
+}, target_interval);
 
 setInterval(() => {
   targets.forEach((target) => {
@@ -129,10 +128,10 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// setInterval(() => {
-//   timer--;
-//   if (timer == 0) {
-//     window.location.href = "end.html";
-//   }
-//   document.getElementById("timer").innerText = String(timer) + "秒";
-// }, 1000);
+setInterval(() => {
+  timer--;
+  if (timer == 0) {
+    window.location.href = "end.html";
+  }
+  document.getElementById("timer").innerText = String(timer) + "秒";
+}, 1000);
