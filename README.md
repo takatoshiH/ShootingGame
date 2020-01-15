@@ -1,4 +1,5 @@
 # シューティングゲーム
+**修正中です**
 
 * 簡単なシューティングゲームです.
 * https://takatoshih.github.io/ShootingGame/ で遊べます。
