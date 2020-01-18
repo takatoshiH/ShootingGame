@@ -67,6 +67,9 @@ var bullet_counter = 30;
 var target_interval = 1000;
 var flame_rate = 10;
 var position = parseInt(window.getComputedStyle(field).width) / 2;
+var window_width = parseInt(window.getComputedStyle(field).width);
+var window_height = parseInt(window.getComputedStyle(field).height);
+    
 
 document.addEventListener('keydown', (event) => {
   if (event.key == "f" && position >= 100) {
@@ -86,14 +89,13 @@ setInterval(() => {
     if (target.left > window.parent.screen.width) {
       targets.splice(targets.indexOf(target), 1);
     }
-    var window_width = parseInt(window.getComputedStyle(field).width);
-    var window_height = parseInt(window.getComputedStyle(field).height);
+
     bullets.forEach((bullet) => {
       if (bullet.top < -10) {
         bullets.splice(bullets.indexOf(bullet), 1);
       }
       
-      if (target.left + window_width * 0.03 >= bullet.left && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
+      if (target.left <= bullet.left && target.left + window_width * 0.03 >= bullet.left && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
         target.hidden();
       }
     })
@@ -113,13 +115,11 @@ document.addEventListener('keydown', (event) => {
     battery.battery.style.left = String(battery.left) + "px";
   }
 
-  //砲台の移動処理に問題あり
   if (event.key == "j" && position + 100 <= window.getComputedStyle(field).width) {
     position += 50;
     battery.left += 100;
     battery.battery.style.left = String(battery.left) + "px";
   }
-
 
   if (bullet_counter == 0) {
     setInterval(() => {
