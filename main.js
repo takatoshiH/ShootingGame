@@ -21,6 +21,9 @@ class Target {
   }
 
   hidden() {
+    this.target.style.color = "red";
+    setInterval(() => {
+    }, 1000);
     this.target.style.display = "none";
   }
 }
@@ -42,10 +45,6 @@ class bullet {
         clearInterval(this.interval_id);
       }
     }, 10);
-  }
-
-  hidden() {
-    this.bullet.style.display = "none";
   }
 }
 
@@ -75,18 +74,17 @@ document.addEventListener('keydown', (event) => {
   if (event.key == "f" && position >= 100) {
     position -= 50;
     battery.left -= 50;
-    battery.battery.style.left = String(battery.left) + "px";
   }
   if (event.key == "j" && position <= parseInt(window.getComputedStyle(field).width) - 100) {
     position += 50;
     battery.left += 50;
-    battery.battery.style.left = String(battery.left) + "px";
   }
   if (event.key == "h"　&& bullet_counter > 0) {
     bullets.push(new bullet(position));
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
   }
+  battery.battery.style.left = String(battery.left) + "px";
 });
 
 setInterval(() => {
