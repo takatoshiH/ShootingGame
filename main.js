@@ -21,9 +21,6 @@ class Target {
   }
 
   hidden() {
-    this.target.style.color = "red";
-    setInterval(() => {
-    }, 1000);
     this.target.style.display = "none";
   }
 }
@@ -62,7 +59,7 @@ class battery {
 targets = [];
 bullets = [];
 var timer = 30;
-var bullet_counter = 30;
+var bullet_counter = 100;
 var target_interval = 1000;
 var flame_rate = 10;
 var position = parseInt(window.getComputedStyle(field).width) / 2;
