@@ -69,14 +69,23 @@ var flame_rate = 10;
 var position = parseInt(window.getComputedStyle(field).width) / 2;
 var window_width = parseInt(window.getComputedStyle(field).width);
 var window_height = parseInt(window.getComputedStyle(field).height);
-    
+battery = new battery();
 
 document.addEventListener('keydown', (event) => {
   if (event.key == "f" && position >= 100) {
-    position -= 100;
+    position -= 50;
+    battery.left -= 50;
+    battery.battery.style.left = String(battery.left) + "px";
   }
   if (event.key == "j" && position <= parseInt(window.getComputedStyle(field).width) - 100) {
-    position += 100;
+    position += 50;
+    battery.left += 50;
+    battery.battery.style.left = String(battery.left) + "px";
+  }
+  if (event.key == "h"　&& bullet_counter > 0) {
+    bullets.push(new bullet(position));
+    bullet_counter--;
+    document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
   }
 });
 
@@ -101,32 +110,6 @@ setInterval(() => {
     })
   });
 }, flame_rate);
-
-document.addEventListener('keydown', (event) => {
-  if (event.key == "h"　&& bullet_counter > 0) {
-    bullets.push(new bullet(position));
-    bullet_counter--;
-    document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
-  }
-
-  if (event.key == "f" && position - 100 >= 0) {
-    position -= 50;
-    battery.left -= 150;
-    battery.battery.style.left = String(battery.left) + "px";
-  }
-
-  if (event.key == "j" && position + 100 <= window.getComputedStyle(field).width) {
-    position += 50;
-    battery.left += 100;
-    battery.battery.style.left = String(battery.left) + "px";
-  }
-
-  if (bullet_counter == 0) {
-    setInterval(() => {
-      window.location.href = "end.html";
-    }, 3000);
-  }
-});
 
 setInterval(() => {
   timer--;
