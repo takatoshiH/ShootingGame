@@ -76,7 +76,7 @@ document.addEventListener('keydown', (event) => {
     position += 50;
     battery.left += 50;
   }
-  if (event.key == "h"　&& bullet_counter > 0) {
+  if (event.key == " "　&& bullet_counter > 0) {
     bullets.push(new bullet(position));
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
