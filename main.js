@@ -68,15 +68,15 @@ let window_height = parseInt(window.getComputedStyle(field).height);
 battery = new Battery();
 
 document.addEventListener('keydown', (event) => {
-  if (event.key == "f" && position >= 100) {
+  if (event.key === "f" && position >= 100) {
     position -= 50;
     battery.left -= 50;
   }
-  if (event.key == "j" && position <= parseInt(window.getComputedStyle(field).width) - 100) {
+  if (event.key === "j" && position <= parseInt(window.getComputedStyle(field).width) - 100) {
     position += 50;
     battery.left += 50;
   }
-  if (event.key == " "　&& bullet_counter > 0) {
+  if (event.key === " "　&& bullet_counter > 0) {
     bullets.push(new Bullet(position));
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
@@ -99,7 +99,7 @@ setInterval(() => {
         bullets.splice(bullets.indexOf(bullet), 1);
       }
       
-      if (target.left <= bullet.left && target.left + window_width * 0.03 >= bullet.left && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top) {
+      if (hitJudge(target, bullet)) {
         target.hidden();
       }
     })
@@ -108,8 +108,12 @@ setInterval(() => {
 
 setInterval(() => {
   timer--;
-  if (timer == 0) {
+  if (timer === 0) {
     window.location.href = "end.html";
   }
   document.getElementById("timer").innerText = String(timer) + "秒";
 }, 1000);
+
+function hitJudge(target, bullet) {
+  return target.left <= bullet.left && target.left + window_width * 0.03 >= bullet.left && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top;
+}
