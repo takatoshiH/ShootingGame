@@ -9,7 +9,7 @@ class Target {
     this.target.style.top = String(this.top) + "px";
 
     this.interval_id = setInterval(() => {
-      var new_margin = parseInt(window.getComputedStyle(field).width) / this.speed + this.left;
+      let new_margin = parseInt(window.getComputedStyle(field).width) / this.speed + this.left;
       if (new_margin > window.parent.screen.width * 1.1) {
         clearInterval(this.interval_id);
         this.target.style.display = "none";
@@ -25,7 +25,7 @@ class Target {
   }
 }
 
-class bullet {
+class Bullet {
   constructor(position) {
     this.bullet = document.getElementById("field").appendChild(document.createElement('div'));
     this.bullet.classList.add('bullet');
@@ -45,7 +45,7 @@ class bullet {
   }
 }
 
-class battery {
+class Battery {
   constructor() {
     this.battery = document.getElementById("field").appendChild(document.createElement('div'));
     this.battery.classList.add('battery');
@@ -58,14 +58,14 @@ class battery {
 
 targets = [];
 bullets = [];
-var timer = 30;
-var bullet_counter = 100;
-var target_interval = 1000;
-var flame_rate = 10;
-var position = parseInt(window.getComputedStyle(field).width) / 2;
-var window_width = parseInt(window.getComputedStyle(field).width);
-var window_height = parseInt(window.getComputedStyle(field).height);
-battery = new battery();
+let timer = 30;
+let bullet_counter = 100;
+let target_interval = 1000;
+const flame_rate = 10;
+let position = parseInt(window.getComputedStyle(field).width) / 2;
+let window_width = parseInt(window.getComputedStyle(field).width);
+let window_height = parseInt(window.getComputedStyle(field).height);
+battery = new Battery();
 
 document.addEventListener('keydown', (event) => {
   if (event.key == "f" && position >= 100) {
@@ -77,7 +77,7 @@ document.addEventListener('keydown', (event) => {
     battery.left += 50;
   }
   if (event.key == " "　&& bullet_counter > 0) {
-    bullets.push(new bullet(position));
+    bullets.push(new Bullet(position));
     bullet_counter--;
     document.getElementById("bullet_counter").innerText = String(bullet_counter) + "Bullets";
   }
