@@ -26,13 +26,26 @@ class Target {
     }
 
     hidden() {
-        this.target.style.display = "none";
+        // 一定時間にイラストを切り替える
+        this.target.firstElementChild.setAttribute('src', 'bakuhatsu1.png');
+
+        // 消す
+        const hidden = () => {
+            this.target.style.display = "none";
+        }
+        setTimeout(hidden, 50);
+
     }
 }
 
 class Bullet {
     constructor(position) {
-        this.bullet = document.getElementById("field").appendChild(document.createElement('div'));
+        let bullet = document.createElement('div');
+        let bulletImage = document.createElement('img');
+        bulletImage.classList.add('bullet');
+        bulletImage.setAttribute('src', 'bullet.png');
+        bullet.appendChild(bulletImage);
+        this.bullet = document.getElementById("field").appendChild(bullet);
         this.bullet.classList.add('bullet');
         this.left = position;
         this.top = parseInt(window.getComputedStyle(field).height) * 0.85;
@@ -40,7 +53,7 @@ class Bullet {
         this.bullet.style.top = String(this.top) + "px";
 
         this.interval_id = setInterval(() => {
-            if (this.top >= -10) {
+            if (this.top >= -15) {
                 this.top -= 10;
                 this.bullet.style.top = String(this.top) + "px";
             } else {
@@ -48,11 +61,19 @@ class Bullet {
             }
         }, 10);
     }
+    hidden() {
+        this.bullet.parentNode.removeChild(this.bullet);
+    }
 }
 
 class Battery {
     constructor() {
-        this.battery = document.getElementById("field").appendChild(document.createElement('div'));
+        let battery = document.createElement('div');
+        let ship = document.createElement('img');
+        ship.classList.add('ship');
+        ship.setAttribute('src', 'senkan.png');
+        battery.appendChild(ship);
+        this.battery = document.getElementById("field").appendChild(battery);
         this.battery.classList.add('battery');
         this.left = parseInt(window.getComputedStyle(field).width) * 0.49;
         this.top = parseInt(window.getComputedStyle(field).height) * 0.9;
@@ -72,6 +93,7 @@ let window_width = parseInt(window.getComputedStyle(field).width);
 let window_height = parseInt(window.getComputedStyle(field).height);
 battery = new Battery();
 
+// 弾丸の発射
 document.addEventListener('keydown', (event) => {
     if (event.key === "f" && position >= 100) {
         position -= 50;
@@ -95,27 +117,24 @@ setInterval(() => {
 
 setInterval(() => {
     targets.forEach((target) => {
-        if (target.left > window.parent.screen.width) {
-            targets.splice(targets.indexOf(target), 1);
-        }
+        if (target.left > window.parent.screen.width) targets.splice(targets.indexOf(target), 1);
 
         bullets.forEach((bullet) => {
-            if (bullet.top < -10) {
+            if (bullet.top < -30)  {
                 bullets.splice(bullets.indexOf(bullet), 1);
+                bullet.hidden();
             }
-
             if (hitJudge(target, bullet)) {
                 target.hidden();
+                bullet.hidden();
             }
-        })
+        });
     });
 }, flame_rate);
 
 setInterval(() => {
     timer--;
-    if (timer === 0) {
-        window.location.href = "end.html";
-    }
+    if (timer === 0) window.location.href = "end.html";
     document.getElementById("timer").innerText = String(timer) + "秒";
 }, 1000);
 

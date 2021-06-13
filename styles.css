@@ -14,9 +14,9 @@ body {
 
 div.bullet {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: red;
+  width: 15px;
+  height: 15px;
+  /*background-color: red;*/
   border-radius: 50%;
 }
 
@@ -32,9 +32,17 @@ div.battery {
   position: absolute;
   width: 2%;
   height: 5%;
-  background-color: grey;
+
 }
 
 .ufo {
   width: 100%;
+}
+
+.bullet {
+  width: 100%;
+}
+
+.ship {
+  width: 200%;
 }
