@@ -22,9 +22,9 @@ div.bullet {
 
 div.target {
   position: absolute;
-  width:3%; 
-  height:2%; 
-  background-color: dodgerblue;
+  width:4%;
+  height:2%;
+  /*background-color: dodgerblue;*/
   border-radius: 50% 50% 50% 50%;
 }
 
@@ -33,4 +33,8 @@ div.battery {
   width: 2%;
   height: 5%;
   background-color: grey;
+}
+
+.ufo {
+  width: 100%;
 }
