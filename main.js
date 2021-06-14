@@ -85,7 +85,7 @@ class Battery {
 targets = [];
 bullets = [];
 let timer = 30;
-let bullet_counter = 100;
+let bullet_counter = 300;
 let target_interval = 1000;
 const flame_rate = 10;
 let position = parseInt(window.getComputedStyle(field).width) / 2;
