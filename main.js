@@ -26,10 +26,7 @@ class Target {
     }
 
     hidden() {
-        // 一定時間にイラストを切り替える
         this.target.firstElementChild.setAttribute('src', 'bakuhatsu1.png');
-
-        // 消す
         const hidden = () => {
             this.target.style.display = "none";
         }
@@ -87,22 +84,29 @@ bullets = [];
 let timer = 30;
 let bullet_counter = 300;
 let target_interval = 1000;
-const flame_rate = 10;
+const flame_rate = 5;
 let position = parseInt(window.getComputedStyle(field).width) / 2;
 let window_width = parseInt(window.getComputedStyle(field).width);
 let window_height = parseInt(window.getComputedStyle(field).height);
+
+// 発射台の設置
 battery = new Battery();
 
 // 弾丸の発射
 document.addEventListener('keydown', (event) => {
+    // 左右移動
     if (event.key === "f" && position >= 100) {
         position -= 50;
         battery.left -= 50;
     }
+
+    // 左右移動
     if (event.key === "j" && position <= parseInt(window.getComputedStyle(field).width) - 100) {
         position += 50;
         battery.left += 50;
     }
+
+    // 発射
     if (event.key === " " && bullet_counter > 0) {
         bullets.push(new Bullet(position));
         bullet_counter--;
@@ -139,5 +143,8 @@ setInterval(() => {
 }, 1000);
 
 function hitJudge(target, bullet) {
-    return target.left <= bullet.left && target.left + window_width * 0.03 >= bullet.left && bullet.top + window_height * 0.02 > target.top && target.top + window_height * 0.02 >= bullet.top;
+    return target.left <= bullet.left
+        && target.left + window_width * 0.03 >= bullet.left
+        && bullet.top + window_height * 0.02 > target.top
+        && target.top + window_height * 0.02 >= bullet.top;
 }
